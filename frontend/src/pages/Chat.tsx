@@ -1,7 +1,95 @@
 import { useState, useEffect, useRef, useCallback, FormEvent } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import mermaid from 'mermaid';
 import { getConversationMessages, createConversation, chatStream } from '../api';
 import Sidebar from '../components/Sidebar';
+
+// Initialize Mermaid with dark theme
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'dark',
+  themeVariables: {
+    primaryColor: '#6c5ce7',
+    primaryTextColor: '#e0e0e0',
+    primaryBorderColor: '#6c5ce7',
+    lineColor: '#a29bfe',
+    secondaryColor: '#2d2d42',
+    tertiaryColor: '#1a1a2e',
+    fontFamily: 'Inter, system-ui, sans-serif',
+  },
+  flowchart: { htmlLabels: true, curve: 'basis' },
+  securityLevel: 'loose',
+});
+
+// Mermaid diagram renderer component
+function MermaidDiagram({ chart }: { chart: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [svg, setSvg] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const idRef = useRef(`mermaid-${Math.random().toString(36).slice(2, 9)}`);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const { svg: renderedSvg } = await mermaid.render(idRef.current, chart.trim());
+        if (!cancelled) {
+          setSvg(renderedSvg);
+          setError('');
+        }
+      } catch (err: any) {
+        if (!cancelled) {
+          setError(err?.message || 'Failed to render diagram');
+          setSvg('');
+        }
+        // Clean up any leftover error element mermaid might create
+        const errEl = document.getElementById('d' + idRef.current);
+        if (errEl) errEl.remove();
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [chart]);
+
+  if (error) {
+    return (
+      <details style={{
+        background: 'rgba(108, 92, 231, 0.1)', border: '1px solid var(--accent)',
+        borderRadius: '8px', padding: '12px', margin: '12px 0',
+      }}>
+        <summary style={{ cursor: 'pointer', color: 'var(--warning)', fontWeight: 600 }}>⚠️ Diagram rendering failed (click to view source)</summary>
+        <pre style={{ background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '8px', overflowX: 'auto', marginTop: '8px', fontSize: '0.8rem' }}>
+          <code>{chart}</code>
+        </pre>
+      </details>
+    );
+  }
+
+  if (!svg) {
+    return (
+      <div style={{ padding: '20px', textAlign: 'center', color: 'var(--text-muted)' }}>
+        <div className="loading-dots" style={{ fontSize: '0.85rem' }}>Rendering diagram...</div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="mermaid-container"
+      style={{
+        background: 'rgba(0, 0, 0, 0.2)',
+        borderRadius: '12px',
+        padding: '16px',
+        margin: '12px 0',
+        border: '1px solid var(--border-glass)',
+        overflowX: 'auto',
+        textAlign: 'center',
+      }}
+      dangerouslySetInnerHTML={{ __html: svg }}
+    />
+  );
+}
 
 type ResponseMode = 'simple' | 'normal' | 'technical';
 type ResponseLength = 'quick' | 'standard' | 'detailed';
@@ -367,8 +455,9 @@ export default function Chat() {
                     ) : (
                       <div className="markdown-body">
                         <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}
                           components={{
-                            p: ({ node, children }) => <p style={{ marginBottom: '0.75em', lineHeight: 1.6 }}>{children}</p>,
+                            p: ({ node, children }) => <div style={{ marginBottom: '0.75em', lineHeight: 1.6 }}>{children}</div>,
                             a: ({ node, href, children }) => {
                               if (href?.startsWith('#source-')) {
                                 return (
@@ -391,7 +480,40 @@ export default function Chat() {
                               }
                               return <a href={href} target="_blank" rel="noreferrer" style={{ color: 'var(--accent)' }}>{children}</a>;
                             },
+                            table: ({ node, children }) => (
+                              <div style={{ overflowX: 'auto', margin: '12px 0', borderRadius: '8px', border: '1px solid var(--border-glass)' }}>
+                                <table style={{
+                                  width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem',
+                                  background: 'rgba(0,0,0,0.15)',
+                                }}>{children}</table>
+                              </div>
+                            ),
+                            thead: ({ node, children }) => (
+                              <thead style={{ background: 'rgba(108, 92, 231, 0.2)', borderBottom: '2px solid var(--accent)' }}>{children}</thead>
+                            ),
+                            th: ({ node, children }) => (
+                              <th style={{
+                                padding: '10px 14px', textAlign: 'left', fontWeight: 700,
+                                color: 'var(--accent)', fontSize: '0.85rem', letterSpacing: '0.02em',
+                              }}>{children}</th>
+                            ),
+                            td: ({ node, children }) => (
+                              <td style={{
+                                padding: '8px 14px', borderBottom: '1px solid var(--border-glass)',
+                                color: 'var(--text-primary)', fontSize: '0.85rem',
+                              }}>{children}</td>
+                            ),
+                            tr: ({ node, children }) => (
+                              <tr style={{ transition: 'background 0.15s ease' }}
+                                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(108, 92, 231, 0.08)')}
+                                onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                              >{children}</tr>
+                            ),
                             code: ({ node, inline, className, children, ...props }: any) => {
+                              const match = /language-(\w+)/.exec(className || '');
+                              if (!inline && match && match[1] === 'mermaid') {
+                                return <MermaidDiagram chart={String(children).replace(/\n$/, '')} />;
+                              }
                               return !inline ? (
                                 <pre style={{ background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '8px', overflowX: 'auto', marginBottom: '1em' }}>
                                   <code className={className} {...props}>{children}</code>

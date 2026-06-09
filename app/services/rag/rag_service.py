@@ -170,14 +170,18 @@ class RAGService:
         
         # 3. Query Expansion & Source Detection
         try:
+            import asyncio
             expansion_prompt = f"Extract critical keywords, technical entities, and system names from this query: '{query}'. Return ONLY a space-separated list of 5-8 exact terms to use for a search engine. Include implicit related terms if known."
-            keywords = await self.llm.generate_response(expansion_prompt)
+            source_prompt = f"Does this query mention any specific file names, document titles, or sources to search in? Query: '{query}'. If YES, extract ONLY the file names as a comma-separated list. If NO, reply EXACTLY 'NONE'."
+            
+            # Execute both LLM pre-processing calls concurrently
+            keywords, source_response = await asyncio.gather(
+                self.llm.generate_response(expansion_prompt),
+                self.llm.generate_response(source_prompt)
+            )
+
             search_query = f"{query} {keywords}"
             logger.info(f"Query expanded from '{query}' to '{search_query}'")
-            
-            # Detect explicit source mentions
-            source_prompt = f"Does this query mention any specific file names, document titles, or sources to search in? Query: '{query}'. If YES, extract ONLY the file names as a comma-separated list. If NO, reply EXACTLY 'NONE'."
-            source_response = await self.llm.generate_response(source_prompt)
             
             target_filenames = None
             if source_response and source_response.strip().upper() != "NONE":
