@@ -27,7 +27,7 @@ export default function Upload() {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
-  const MAX_FILES = 50;
+  const MAX_FILES = 500;
   const isLimitReached = docs.length >= MAX_FILES;
 
   useEffect(() => {
@@ -46,6 +46,7 @@ export default function Upload() {
     // Skip macOS AppleDouble hidden files and generic hidden files
     if (file.name.startsWith('.') || file.name.startsWith('._')) {
       console.log(`Skipping hidden file: ${file.name}`);
+      setError(`Cannot upload hidden files (${file.name})`);
       return;
     }
     
@@ -68,9 +69,11 @@ export default function Upload() {
 
         setStage('done');
         setProgress('Document processed successfully!');
+        setTimeout(() => setStage('idle'), 3000);
       } catch (err: any) {
         setStage('error');
         setError(err.message || 'Processing failed');
+        setTimeout(() => setStage('idle'), 4000);
         // Rollback uploaded document if chunking/embedding fails
         if (docId) {
           try {
@@ -81,7 +84,7 @@ export default function Upload() {
           }
         }
       }
-  }, []);
+  }, [isLimitReached, MAX_FILES]);
 
   const getFilesFromDataTransfer = async (items: DataTransferItemList): Promise<File[]> => {
     const files: File[] = [];
@@ -213,11 +216,15 @@ export default function Upload() {
             type="file"
             multiple
             accept=".pdf,.docx,.doc,.txt,.csv,.md,.png,.jpg,.jpeg,.xls,.xlsx,.zip"
-            style={{ display: 'none' }}
+            style={{ display: 'block', margin: '20px auto', padding: '10px' }}
             onChange={async (e) => {
-              if (e.target.files) {
+              if (e.target.files && e.target.files.length > 0) {
                 const files = Array.from(e.target.files);
-                for (const f of files) await processFile(f);
+                for (const f of files) {
+                  await processFile(f);
+                }
+                // Reset input value so same file can be selected again
+                e.target.value = '';
               }
             }}
           />
