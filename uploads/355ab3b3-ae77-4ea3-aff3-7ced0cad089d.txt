@@ -1,0 +1,391 @@
+(Transcribed by TurboScribe. Go Unlimited to remove this message.)
+
+[Speaker 1]
+So, whether it is QBR or MBR, so it is a it is irrespective. So, I just open a presentation just to show you. I think before the presentation, if we can show like from from where you are getting the data sources, how you are downloading it, and how you are preparing the data, then we will probably go to the PPT.
+
+So, we will go slide by slide only, that this is the slide, I think that will be better. Each slide, you just tell us how are you preparing. Otherwise, we will be talking and you will not know that about which slide I am talking about, right?
+
+No, no, understood. So, Dinesh, if there if there are any calculations that you do manually as well, you walk us through that as well. Or if you are just putting the data from any of the report and just putting it, that also you can clarify, that will be helpful for us, right?
+
+[Speaker 2]
+Yeah, yeah. Thank you.
+
+[Speaker 1]
+Is my screen viewable to you? Yes. Yeah.
+
+So, this is my presentation, which I showed to Jubilant, right? It was a last month presentation. So, this is the home screen, the first slide, right?
+
+And this is the agenda. So, basically, these are in the first slide, so the logo that you selected, that logo come is provided by the user only or you by yourself, you select the logo? No, no, I have taken out from from internet.
+
+Okay. Okay. Okay.
+
+This is like the data is the logo is already or always available over the internet. Now, there is no need to ask from customer about the logo. Correct.
+
+Correct. Yes. No, but there will be like multiple logos.
+
+Let's say for HDFC Bank, there are so many logos. So, which one to pick? HDFC Bank only has one logo.
+
+No, but suppose if you just do a Google search, Jubilant Foodworks, there might be different variants of a logo as well. Some might be older, some are 2 years old or updated. So, do you keep a check of any of these?
+
+That basically, PSM is already aware of their recent go, so you can keep this thing for PSM only to take it out from internet, the service manager who is presenting the MBR. Okay. Okay.
+
+For example, in case it is you. Yeah. Okay.
+
+So, for if you are preparing it for Jubilant, the logo can be kept blank for the service manager to put after taking out from the internet. This is a basic thing you can automate everything. Correct.
+
+Or otherwise, a placeholder can be kept where you can update the logos and from where the date system can pick that Prashant.
+
+[Speaker 2]
+Yeah.
+
+[Speaker 1]
+That also can be done, but in this, we'll have to keep on updating those logos every now and then if there is any change. Correct. We'll try to pick the best possible logo, but the chances there may be like 80% it would be good, but the sales manager, service manager has to just once they have to see the logo, it's correct or not.
+
+If it is incorrect, they can manually replace it. Correct. We can do that.
+
+[Speaker 2]
+Okay.
+
+[Speaker 1]
+Okay. So, moving on, this is the agenda. So, these are the data points or the agenda we'll be showing to the client.
+
+So, I'll just take you through one by one. Okay. So, this is basically, you cannot call it an escalation metric, but this is basically an introduction of our team.
+
+So, in our team, there are key account manager, service manager, solution manager, project manager, and account lead.
+
+[Speaker 2]
+So in once again, so like this is our account lead, Mr. Manish Pandey.
+
+[Speaker 1]
+I am service manager. Then we have key account manager, solution manager. Currently, we do not have in our team recently resigned.
+
+So, it is blank. And then there is a project manager, Ankit Mathur. Everything else will remain the same.
+
+Only these four things, these five things will change on the basis of PSM. So, these four things are for customer, right? Yeah.
+
+This is for customer to refer that this is their, this is Jio's team who is basically in touch with me for each and everything like for, you know, for solution manager, the role of a solution manager is basically pre-sales. Then, you know, role of account manager comes into picture. That is key account manager who basically places the, you know, places the order.
+
+Then after the activation, then project manager will come into picture in which he delivers the link. And then finally, after the, there is a lot of background noise.
+
+[Speaker 2]
+Can you mute it guys? Yeah.
+
+[Speaker 1]
+So, after the project manager's role, once he delivers the link, then basically the role of service manager comes and because we are basically responsible for after sales service. And this is basically account lead. Everybody is reporting into him.
+
+So, this is the structure you can say. Dinesh, these names, how do you get these names? So, this we can get from the allocation, which is already available with Poorthim or if you want, I can also share with you.
+
+So, you can just make a note of it that the slide number, this is once again, slide number three in which the structure is required. You need to have a account wise ownership excel. So, this you can take a note of it.
+
+This data, we can later note it down that which data will be provided with whom by whom. Sorry. So, like this data will be provided by Poorthi Arora.
+
+Or if you want, I can make a note of it. However you like it. Yes, I'm noted down.
+
+I'm noting down at the end of the discussion. So, slide number three, you can just write by slide by slide. You can also put the title of the slide.
+
+Slide number three, the customer success group data will be available with Poorthi Arora. So, I think these three columns can be referred later. Then on the fourth slide, you will have the escalation matrix.
+
+So, in the escalation matrix, level zero, level one will remain the same, right? Because this is for the entire customer segment. Changes will be done on level two, level three and level four.
+
+So, these things again will be dynamic. These will keep on changing. So, for that also, you can write that these details also will be available in allocation tracker, which will be provided by Poorthi Arora only.
+
+[Speaker 2]
+Okay, you call this as allocation tracker. You can write allocation file. Okay.
+
+[Speaker 1]
+Okay. So, this is allocation file and slide number three, this also you can write as allocation file only. Because this also will be a part of allocation only.
+
+So, you know, this way only like for some accounts, we have the resident engineers also. So, account by account, you need to have a view of level two, level three, level four. And if there is any level five also, so we need to prepare a account wise file in which, you know, all the levels will be mentioned so that the data can be, you know, right away extracted from that particular Excel.
+
+Okay. So, here there can be a level five as well based on the account type.
+
+[Speaker 2]
+Correct? Yeah.
+
+[Speaker 1]
+So, Prashant ji, isme dynamic hai, matlab? There can be one extra... Except level zero and level one, everything is dynamic.
+
+And even there can be an additional... Just the way we have in slide number three, slide number four is also dynamic. So, we need to devise some Excel sheet wherein all this information can be fed timely by Poorthi.
+
+Absolutely. Absolutely. Yes.
+
+And the sample file, whatever is there that Poorthi already has, she will share. Correct? Allocation file.
+
+[Speaker 2]
+Yes.
+
+[Speaker 3]
+Continue please.
+
+[Speaker 1]
+Earlier, when we prepared this automated, which never basically came into picture, but when I was viewing the draft, this slide was kept blank. It was given to the service manager to fill. So, we need to basically wait for Poorthi ma'am's view that whether this needs to be put by the PSM or this will again be automated.
+
+[Speaker 2]
+Understood. Okay. Ready?
+
+One second. There is a little background noise. I need to change the sheet.
+
+One second. Sure. Yeah.
+
+[Speaker 1]
+So, this one is slide number five in which we are putting customer and touch points. So, this again will be dynamic depending upon the customer. Like Jubilant, we have these four touch points.
+
+So, we have taken a note of it. So, again, there we need to create a file in which all these touch points needs to be provided to you so that you can make it a part of the PPT. And this customer and touch point is also provided in what is the file name that you refer?
+
+So, yeah, currently there is no such file in which we are, you know, populating or collating any such data. Yeah. So, if in case required, we'll have to create one.
+
+Currently, there is no such file present with NHQ or, you know, in a consolidated form. Currently, no consolidated file.
+
+[Speaker 2]
+Yeah, this I have also noted down. Yeah.
+
+[Speaker 1]
+Then I think we can move to the next slide. Yeah. So, later on, just show me whatever you are creating so that we all are in sync with those nodes.
+
+Yes. Sure. Sure.
+
+Definitely. After the meeting, I'll send a MOM. You can.
+
+If I have.
+
+[Speaker 3]
+Yeah.
+
+[Speaker 1]
+Or after this call, at the end, you can just show it to me that this is what you have made. Are you taking a written note of it or are you typing it? I was taking a written note of it.
+
+Okay. That's okay. No problem.
+
+So, even if you feel that in the minutes of meeting something is wrong, you can definitely you can.
+
+[Speaker 3]
+Yeah.
+
+[Speaker 1]
+That's okay. That's okay. Sure.
+
+That's okay. Yeah. So, this is our slide number six.
+
+So, now, basically, we come to the exact business. Earlier, there was just introduction. So, we have now actually come to the business.
+
+So, this is basically the current business landscape of this customer, Jubilant. So, like you can see here, we have products here and we have month wise active business with the customer here. So, like ILL, how many ILLs are running month wise mobility, likewise, air fiber and broadband.
+
+So, this is a list. So, basically, for this, I would suggest we will have to be dependent upon two, three reports. Like for ILL, there is another report for mobility.
+
+There is a billing report, which we need to refer. Then for air fiber, again, there is a billing report, which we need to refer. And for broadband also, there is a billing report, which we need to refer.
+
+So, to prepare this data, we need to have at least we need to we require basically two data points. One is the active care base and second one is the service count. So, I'll just share with you the files which I have and from out of which I prepare this data.
+
+So, first file is about ILL, which is independently taken from one file.
+
+[Speaker 2]
+This is for Jan.
+
+[Speaker 1]
+We have this care database, which is shared with us every month for the previous month. So, like this is for Jan and it was shared with me in first week of February. Okay.
+
+Okay. Yeah. So, this is the circuit base.
+
+So, if I'll open here, let's see Jubilant, Jubilant Foodworks. So, I have filtered Jubilant Foodworks and then I will this is basically ILL. Okay.
+
+ILL or MPLS or SIP, whatever it is, it will come here. I'll tell you that what data points will be extracted from this file because this customer only has ILL. So, that is why it will only give results of ILL.
+
+So, from here there is a termination flag. So, termination flag we need to we need to exclude the yes ones because these are terminated. So, we don't need to share it with the customer.
+
+So, we'll exclude this and we'll only share these n. So, n if you are seeing it is 687. So, for January, I have not yet created it for January because the MBR is there in a couple of days.
+
+So, this 693 will become 668. You getting me? Where was 668?
+
+Can you show one? Yeah. So, this the total count is 687.
+
+Yeah. So, after December, I'll place another column January and I'll put 687 there and I'll remove this October column. So, I'll always show a trend of last three months.
+
+Understood? One question Dinesh. Now I'll tell you.
+
+One question Dinesh. Yeah. This care data.
+
+So, you are getting always for one particular month data, right?
+
+[Speaker 3]
+So, you are not getting three separate sheets for three previous months.
+
+[Speaker 1]
+No. So, this is only month wise data. Yes.
+
+So, this file like this file belongs to January. If I'll open another file, it will be of December of last year. So, this is month wise data.
+
+So, in order to prepare last three months trend, you will have to have all three reports. Remember December and January. And Dinesh, in case of quarterly, then how do you do it?
+
+So, as I told you, in quarterly also, I'll show like this only. November, December and January. In quarterly also, the report remains same only.
+
+This page remains same only. Yeah. So, it is just quarterly and monthly is just a frequency change.
+
+So, for quarterly, customer basically reviews once a quarter and monthly customer reviews once every month. That is the only change. The data will remain the same.
+
+[Speaker 3]
+There is no change with the data.
+
+[Speaker 1]
+So, at any point of time, you are showing last three months data. Absolutely. Let's say if it is February.
+
+So, January, December and November three months data you will prepare. Absolutely. So, it is a monthly basis.
+
+And if it is a quarterly basis, then at the end of March, that is in the April. So, we'll show January, February, March. No, not necessary.
+
+So, this is not entirely calendar month. Some customers do it. You know, October, November, December also.
+
+What I understood is whenever… QBR and MBR is just the frequency at what you are meeting the customer. From report point of view, the report remains same only.
+
+Absolutely. Correct. So, Prashant ji, from QBR and MBR, we don't have any change.
+
+Only the frequency. Whenever they are clicking, they should get the three month data. Correct.
+
+Understood. Thank you. Okay.
+
+Now, I will show you…
+
+[Speaker 3]
+One point, sir. Sorry. This QBR, I mean, the quarterly one, it will be like what Dinesh said.
+
+It will be like three months data. But in the monthly one, it is just one month data which is being fed. So, essentially then it is not MBR report.
+
+It is QBR report only.
+
+[Speaker 1]
+Every time it is QBR only. Frequency is monthly or quarterly. Correct, Dinesh?
+
+Yeah. So, as I told you, it is only our meeting appointment with customer which has to do with the MBR or QBR. The data will remain the same in both the presentations.
+
+[Speaker 2]
+Okay. So, it will be always last three months. Understood.
+
+[Speaker 1]
+So, now I will tell you under this file. So, you can just name it as Carebase. This is a Carebase in which you will get the data for these particular products.
+
+ILL, MPLS, SIPTRUNK, and TOLFREE. So, Jubilant only has ILL. That is the reason why I was only referring when I entered…
+
+When I filtered Jubilant here, it only gave me results of ILL because they only have this product. TOLFREE is there, but TOLFREE is terminated. See, if I select TOLFREE, the termination flag is Y.
+
+So, this data basically has four product lines. ILL, MPLS, SIPTRUNK, TOLFREE. So, all these product lines, we consider them in wireline.
+
+[Speaker 2]
+Okay. In wireline, these four products generally come up.
+
+[Speaker 1]
+Yeah. So, for example, if Jubilant has ILL, MPLS, SIPTRUNK, TOLFREE, all product lines, so the rows here will change.
+
+[Speaker 2]
+Sorry, columns here will change.
+
+[Speaker 1]
+So, currently it is… We will have ILL, MPLS, SIPTRUNK, TOLFREE, all four, and then remaining products. Okay.
+
+And these remaining products you get from other list, any other list? Yeah. So, I will tell you that also.
+
+So, this is clear. For wireline products, the data points come from Carebase.
+
+[Speaker 2]
+Yes, clear to me.
+
+[Speaker 1]
+Okay. And now for the other products like Mobility, you have Airfiber, you have Enterprise Broadband. There is another report, which is this.
+
+Now, for this, you will be dependent upon Bill and Pay team. You can make a note of it that for other data points, Bill and Pay, Excel needs to be referred. So, you reach by yourself to the Bill and Pay team or as a norm, they send it every month to you?
+
+Yeah. So, it is basically a fortnightly affair. We get the data every fortnight for other purposes, for tracking our collections, etc.
+
+So, under that file, only this information is present.
+
+[Speaker 2]
+See. So, this is that data.
+
+[Speaker 1]
+For my base, this is a Jan Closing. So, under this, if I will open Jubilant, I will again have these products. These are the products.
+
+So, ILL will not refer from here. Toll Free will not refer from here because it will be referred from the Carebase. Rest everything like Mobility, Air Fiber, Broadband will be referred.
+
+Toll Free, sorry, Toll Free not. These four data points, other than Wireline Business, will be referring from this file. And once, one second, just one second.
+
+[Speaker 2]
+Yeah.
+
+[Speaker 1]
+So, you mean to say, though it has ILL data and Toll Free data, we are not using from this.
+
+[Speaker 3]
+We should not use from this one.
+
+[Speaker 1]
+You are right. You are right. You are right.
+
+Yes.
+
+[Speaker 2]
+So, here if you will see Jubilant, these are the products.
+
+[Speaker 1]
+So, if I will check Mobility here. Mobility has these many active numbers running. So, I will take 24 as.
+
+So, here if you will check, it used to be 46. Now, it will be 24. Once I prepare the January base.
+
+Likewise.
+
+[Speaker 2]
+One question, Dinesh.
+
+[Speaker 1]
+Broadband. Yeah. You are saying like this bill and pay data you are getting fortnight.
+
+So, you are clubbing both the reports together or you are referring the latest file, the second fortnight data. No. So, like this is, if you will check, this data reached me 16th of February.
+
+There was one more data which was sent to me in the beginning of February. So, no, sorry, in the beginning of, not in the beginning of, yeah, in the beginning of February, but it was for January closing. So, I will be referring that particular data to put the January figures.
+
+Okay. January closing. Yeah.
+
+So, that previous month's closing report we should refer. Yeah. The same way like I told you for Care Base, you will, you need to have each month closing file.
+
+Same way you need to have each month closing file for bill and pay also in order to put these data points. Checked. So, time frame should be same, like we should refer like 30th of Jan or the end of the period.
+
+Yeah. So, the closing file will obviously, the closing file will obviously be for the last day of the month, but you will get it by 7th or 8th of the next month. Like we are running, like this is February going, so February closing data you will get it on 7th or 8th of March.
+
+Both Care Base and the other one, bill and pay file also. So, basically you will have to wait till 7th or 8th of the month to start preparing these MBR presentations. Okay.
+
+So, ILL and the other one which you mentioned, we have to refer the Care File and the next one is bill and pay file for rest of the month. Yeah, so you can just make a, you can just, you know, under this file you will get, you know, all the products like see, I'll tell you, this is the entire base.
+
+[Speaker 2]
+So, here you will see all the product lines. Yeah.
+
+[Speaker 1]
+So, here you have broadband, like this FTTH and FTTAX is broadband. Then ILL, then this is air fiber UBR, then L2 MPLS, L3 MPLS or MPLS, then mobility, mobility IUD. So, all the data products are here, only SIP trunk, toll free, ILL and MPLS.
+
+You need to fetch from the Care Base, rest everything can be fetched from this report. MPLS both L2, L3 will be, should be fetched from the Care File, right?
+
+[Speaker 2]
+Yes, yes, yes, yes.
+
+[Speaker 1]
+So, you can just take a note of what all data you get from Care Base, rest everything you can write that needs to be taken out from the bill and pay file.
+
+[Speaker 2]
+Understood. Okay.
+
+[Speaker 1]
+So, like this, I have, you know, every month and file I have referred and created this. Now, for me, the job is a little easier because I only need to put the current month, like I'll be putting the January month rest. I don't need to refer the earlier ones because, you know, that is already closed and I already placed it once.
+
+So, I don't need to, you know, edit those again and again because these will not change now because these were for the previous months. Getting me? Yes.
+
+So, I just need to put the latest month and I need to remove a last month.
+
+[Speaker 2]
+Understood.
+
+[Speaker 1]
+And the synopsis obviously, in my view, needs to be put in by the Service Manager only because we only know what is happening in the account. So, the synopsis, you obviously cannot write. Correct.
+
+That needs to be kept blank only. The graph obviously, yes, you can create. Yes, there was one request from Poorthi that synopsis also should come.
+
+But generally, what do you write in synopsis? It is just the, like, elaboration of the data. So, basically, it depends.
+
+See, under this synopsis, I have mentioned that what is the current business, how many links are on which last mile, like how many are on UBR, how many are on GPON and Fiber. This also, you will get it from CareBase, but I don't know how much feasible it is for you to do.
+
+(This file is longer than 30 minutes. Go Unlimited at https://turboscribe.ai/ to transcribe files up to 10 hours long.)

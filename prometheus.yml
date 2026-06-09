@@ -1,0 +1,22 @@
+# Prometheus Configuration
+# Scrapes metrics from the FastAPI application's /metrics endpoint
+
+global:
+  scrape_interval: 15s       # How often to scrape targets
+  evaluation_interval: 15s   # How often to evaluate alerting rules
+  scrape_timeout: 10s        # Per-scrape timeout
+
+scrape_configs:
+  # FastAPI Application Metrics
+  - job_name: "fastapi_chatbot"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["web:8000"]
+        labels:
+          environment: "production"
+          service: "chatbot-api"
+
+  # Prometheus self-monitoring
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]

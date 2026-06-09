@@ -1,0 +1,257 @@
+"""
+OCR Service Quick Start Guide
+
+Setup & Installation
+====================
+
+1. Install OCR Dependencies:
+   pip install -r requirements.txt
+
+2. Database Setup:
+   - Run migrations to create OCR tables
+   - alembic upgrade head
+
+3. Start Celery Worker (for async processing):
+   celery -A app.core.celery_app worker -l info
+
+4. Start API Server:
+   uvicorn app.main:app --reload --port 8000
+
+5. Monitor Celery Tasks:
+   celery -A app.core.celery_app flower
+
+Usage Examples
+==============
+
+A. Simple Text Extraction (Synchronous)
+   
+   POST /api/v1/ocr/extract HTTP/1.1
+   Host: localhost:8000
+   Authorization: Bearer YOUR_TOKEN
+   
+   Form Data:
+   - file: <upload image.png>
+   - provider: paddle
+   - languages: en
+   
+   Response: Full OCR result with text, regions, confidence
+
+B. Asynchronous Extraction
+
+   POST /api/v1/ocr/extract-async HTTP/1.1
+   
+   Response: {"task_id": "job-uuid", "status": "pending"}
+   
+   Then poll:
+   GET /api/v1/ocr/job/job-uuid HTTP/1.1
+   
+   Response: Updated status and results when ready
+
+C. Batch Processing
+
+   POST /api/v1/ocr/batch HTTP/1.1
+   
+   Form Data:
+   - files: <multiple files>
+   - task_name: "Batch Job Name"
+   - provider: doctr
+   
+   Response: {"batch_id": "batch-uuid", "status": "pending"}
+   
+   Monitor:
+   GET /api/v1/ocr/batch/batch-uuid HTTP/1.1
+
+D. Check Available Providers
+
+   GET /api/v1/ocr/providers
+   
+   Response: {"providers": ["paddle", "tesseract", "doctr"]}
+
+E. List Supported Languages
+
+   GET /api/v1/ocr/languages
+   
+   Response: List of language codes and names
+
+Python Service Integration
+==========================
+
+from app.services.ocr_service import OCRService
+
+# Initialize
+ocr_service = OCRService(default_provider="paddle", use_gpu=False)
+
+# Extract from file
+result = await ocr_service.extract_text_from_file(
+    "/path/to/image.png",
+    provider="paddle",
+    languages=["en"],
+)
+
+# Extract from bytes
+image_bytes = open("document.pdf", "rb").read()
+result = await ocr_service.extract_text_from_bytes(
+    image_bytes,
+    "document.pdf",
+    provider="doctr",
+)
+
+# Extract tables only
+tables = await ocr_service.extract_tables(image_array)
+
+# Access results
+print(f"Text: {result.text}")
+print(f"Confidence: {result.overall_confidence}")
+print(f"Processing time: {result.processing_time_ms}ms")
+print(f"Tables found: {len(result.tables)}")
+
+Database Models
+===============
+
+1. OCRJob
+   - user_id, file_name, file_path, file_format
+   - provider, languages, extract_tables, preprocess
+   - status (pending/processing/completed/failed)
+   - extracted_text, text_regions, tables
+   - overall_confidence, processing_time_ms
+   - created_at, completed_at
+
+2. OCRBatch
+   - user_id, batch_name
+   - status, total_files, processed_files, failed_files
+   - created_at, completed_at
+
+3. OCRCache
+   - file_hash (SHA256)
+   - extracted_text, text_regions, tables
+   - overall_confidence
+   - created_at, last_accessed
+
+Celery Tasks
+============
+
+# Process single file (asynchronous)
+from app.tasks_ocr import process_ocr_file
+process_ocr_file.delay(
+    job_id="uuid",
+    file_path="/path/file.png",
+    provider="paddle",
+    languages=["en"],
+)
+
+# Process batch of files
+from app.tasks_ocr import process_ocr_batch
+process_ocr_batch.delay(
+    batch_id="uuid",
+    file_paths=["/path1.png", "/path2.pdf"],
+)
+
+# Cleanup old jobs (schedule via beat)
+from app.tasks_ocr import cleanup_old_ocr_jobs
+cleanup_old_ocr_jobs.delay(days=30)
+
+# Cleanup cache (schedule via beat)
+from app.tasks_ocr import cleanup_ocr_cache
+cleanup_ocr_cache.delay(days=90)
+
+Image Preprocessing
+===================
+
+from app.services.ocr.preprocessing import ImagePreprocessor
+import cv2
+
+image = cv2.imread("document.png")
+
+# Full preprocessing pipeline
+preprocessed = ImagePreprocessor.preprocess_pipeline(
+    image,
+    deskew=True,
+    denoise=True,
+    contrast_enhance=True,
+    resize_scale=2.0,
+)
+
+# Individual preprocessing steps
+gray = ImagePreprocessor.grayscale(image)
+denoised = ImagePreprocessor.denoise(gray, method="bilateralFilter")
+deskewed = ImagePreprocessor.deskew(denoised)
+enhanced = ImagePreprocessor.enhance_contrast(deskewed)
+thresholded = ImagePreprocessor.thresholding(enhanced, method="otsu")
+
+Supported Formats & Languages
+==============================
+
+Formats: PNG, JPG, JPEG, TIFF, PDF
+
+Languages (15+):
+- English (en)
+- Spanish (es)
+- French (fr)
+- German (de)
+- Chinese Simplified (ch)
+- Chinese Traditional (tra)
+- Japanese (ja)
+- Korean (ko)
+- Russian (ru)
+- Arabic (ar)
+- Hindi (hi)
+- Portuguese (pt)
+- Italian (it)
+- Vietnamese (vi)
+- Thai (th)
+
+Performance Tips
+================
+
+1. Cache Hits: Process same file multiple times = <100ms
+2. GPU Mode: 3-5x faster for PaddleOCR/DocTR
+3. Batch Processing: More efficient than individual files
+4. Preprocessing: Improves accuracy ~5-10%, adds 200-500ms
+5. Provider Selection:
+   - PaddleOCR: Best speed + accuracy
+   - Tesseract: Lowest memory
+   - DocTR: Best for documents + tables
+
+Troubleshooting
+===============
+
+Issue: Out of Memory
+Solution: 
+  - preprocess=False
+  - Reduce file sizes
+  - Use Tesseract instead
+  - Cleanup cache
+
+Issue: Low Accuracy
+Solution:
+  - Enable preprocessing
+  - Try different provider
+  - Use specific languages
+  - Increase image resolution
+
+Issue: Slow Processing
+Solution:
+  - Enable GPU
+  - Use PaddleOCR
+  - Use async API
+  - Process in batches
+
+Error Codes
+===========
+
+400: Invalid input (unsupported format, missing fields)
+401: Unauthorized (missing token)
+403: Forbidden (access denied)
+404: Not found (job/batch not found)
+500: Server error (processing failed)
+
+Next Steps
+==========
+
+1. Set up database migrations: alembic upgrade head
+2. Configure Celery workers and monitoring
+3. Integrate with existing document workflows
+4. Set up scheduled cleanup tasks
+5. Monitor performance and cache usage
+6. Customize preprocessing pipeline as needed
+"""
